@@ -1,0 +1,248 @@
+html{
+  height: 100%;
+  /* width: 100%; */
+  background-image: url('./images/background.png');
+  background-size: cover;
+}
+body{
+  margin:0;
+  height: 100%;
+  width: 100%;
+}
+input{
+  width: 250px;
+  height: 25px;
+}
+#topHeader{
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-areas: 'left center right';
+  background-color:dodgerblue;
+  border-bottom:darkturquoise 3px solid;
+  opacity: 80%;
+}
+#headerLogoDiv{
+  grid-area: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+#headerAuthBtnDiv{
+  grid-area: right;
+  display: flex;
+  justify-content: center;
+}
+#logoImage{
+  width: 50px;
+  height: 50px; 
+}
+#logoText{
+  font-size: 50px;
+  color: black;
+}
+#headerAuthBtn{
+  width: fit-content;
+  cursor: pointer;
+  background-color: lightblue;
+  border-radius: 15px;
+  min-width: 100px;
+  font-size: 20px;
+}
+#loginModal, #signupModal{
+  display: none;
+  z-index: 1;
+  flex-direction: column;
+  align-items: center;
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  /* box-shadow: -10px 10px 8px 8px #888888; */
+  background-color:darkturquoise;
+  opacity: 85%;
+  width: 450px;
+  height: 550px;
+}
+#accountModal{
+  display: none;
+  z-index: 1;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  background-color:darkturquoise;
+  width: 150px;
+  height: 200px;
+  padding: 10px;
+}
+#accountDetailsImage{
+  width: 50px;
+  height:50px;
+}
+#appBody{
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-areas: 'nav main blankArea';
+  width: 100%;
+  height: 100%;
+}
+#navPanel{
+  grid-area: nav;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:lightblue;
+  opacity: 90%;
+}
+#routineProjBtnsContainer{
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+#mainPanel{
+  z-index: 0;
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:lightblue;
+  opacity: 90%;
+}
+#rightPanel{
+  grid-area: blankArea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:lightblue;
+  opacity: 90%;
+}
+#projCreatorWindow, #projEditorWindow, #taskCreatorWindow, #taskEditorWindow{
+  z-index: 1;
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color:dodgerblue;
+  padding: 10px;
+  border: black solid 2px;
+  border-radius: 20px;
+  padding: 25px;
+}
+#addProjBtn, #addTaskBtn{
+  margin-top: 15px;
+  height: 35px;
+  border-radius:5px;
+}
+#headerWelcomeMsg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 50px;
+}
+#loginForm, #signupForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  gap: 10px;
+}
+#accountModalContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.checkBox{
+  width:25px;
+  height:25px;
+  cursor: pointer;
+}
+.authButton{
+  width: 100px;
+  height: 30px;
+}
+.taskEntry{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  padding:2px;
+  margin-bottom: 5px;
+  width:500px;
+  border: black solid 1px;
+  border-radius: 5px;
+  gap:5px;
+}
+.taskText{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  word-break: break-all;  
+}
+.projNavBtnEntry{
+  display: flex;
+  flex-direction: row;
+  border: black solid 1px;
+  border-radius: 5px;
+  gap: 5px;
+}
+.projNavBtnEntry:active{
+  border-color: red;
+}
+.projNavBtn{
+  cursor: pointer; 
+  border-radius: 5px;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+  background:#DDD;
+  min-width: 150px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0px;
+  border-right: black solid 1px;
+
+}
+.projNavBtn:active {
+  color:red;
+  border-color: red;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+.routineProjBtn{
+  font-weight: bolder;
+  border: black solid 1px;
+}
+.pNameLabel{
+  font-weight: bolder;
+}
+.popupErrMsg{
+  color: red;
+}
+.popupForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  gap: 10px;
+}
+.projEditBtn{
+  cursor: pointer;
+  height: 40px;
+  width: 25px;
+}
+.taskEditBtn{
+  height:25px;  
+  cursor: pointer;
+}
+.closeBtnDiv{
+  display:flex;
+  justify-content: flex-end;
+}
+.popupCloseBtn{
+  width:35px;
+  height:35px;
+}
+.popup{
+  text-align: center;
+}

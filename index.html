@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To Do List</title>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="images/logo.png"/>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <!-- Header: contains the logo and the auth button-->
+  <nav id="topHeader">
+    <div id="headerLogoDiv">
+      <img id="logoImage" src="images/logo.png">
+      <div id="logoText">To Do List</div>
+    </div>
+    <div id="headerAuthBtnDiv">
+      <button id="headerAuthBtn"></button>
+    </div>
+    </nav>
+    
+  <!-- The main Body div is divided into 3 grid areas: 
+    left panel, main panel, and right panel -->
+  <div id="appBody"> 
+
+    <!-- Left panel -->
+    <div id="navPanel">
+      <!-- routine projects list -->
+      <h2>Routines</h2>
+      <div id="routineProjBtnsContainer">
+        <div class="projNavBtn routineProjBtn" data-pName="Daily">Daily</div>
+        <div class="projNavBtn routineProjBtn" data-pName="Weekly">Weekly</div>
+        <div class="projNavBtn routineProjBtn" data-pName="Monthly">Monthly</div>
+        <div class="projNavBtn routineProjBtn" data-pName="Yearly">Yearly</div>
+      </div>
+      <!-- project buttons list -->
+      <h2>Projects</h2>
+      <div id="newProjBtnsContainer"></div> <!-- New projects buttons go here -->
+      <button id="addProjBtn">+ Add New Project</button>
+    </div>
+
+    <!-- main panel -->
+    <div id="mainPanel">
+      <h2 id="currentProjHeading">Daily</h2>
+      <h2 id="currentProjDate">Daily</h2>
+      <!-- project tasks viewer -->
+      <div id="currentProjTasksList"></div>
+      <button id="addTaskBtn">+ Add New Task</button>
+    </div>
+
+    <!-- right panel -->
+    <div id="rightPanel">
+      <!-- ACCOUNT MODAL -->
+      <div id="accountModal" class="popup">
+        <div class="closeBtnDiv">
+          <button class="popupCloseBtn">X</button>
+        </div>
+        <div id="accountModalContent">
+          <img id="accountDetailsImage" alt="user profile pic">
+          <h4 id="accountDetailsText"></h4>
+          <button id="logoutBtn" class="authButton">Log Out</button>
+        </div>
+      </div>
+    </div>
+
+  </div>  <!-- App Body End-->
+    
+  <!-- Next comes all of the popup divs, starting with the login modal popup.
+  These have a disply of "none" unless popped up, and have absolute positioning.
+  Note that the popup for user account info is separately located in right panel -->
+  <div id="loginModal" class="popup">
+    <h4 id="loginModalHeading">Welcome to To Do List!</h4><br/>
+    <div>Log in with</div></br>
+    <div>
+      <button id="googleAuthBtn" class="authButton">Google</button>
+      <button id="githubAuthBtn" class="authButton">Github</button>
+    </div>
+      <p>Or</p>
+    <form id="loginForm">
+      <input type="email" id="loginEmailInput" placeholder="Email" required></input>
+      <input type="password" id="loginPasswordInput" placeholder="Password" required></input>
+      <button id="loginBtn" class="authButton">Log In</button>
+      <p>Or</p>
+      <button id="loginFormSignupBtn" class="authButton">Sign Up</button>  
+    </form>
+    <p id="loginErrorMsg" class="popupErrMsg"></p>
+  </div>
+
+  <!-- signup modal popup-->
+  <div id="signupModal" class="popup">
+    <h4 id="signupHeading">Sign Up</h4><br/>
+    <form id="signupForm" class="popupForm">
+      <input type="email" id="signupEmailInput" placeholder="Email" required></input>
+      <input type="password" id="signupPasswordInput" placeholder="Password" required></input>
+      <button id="signupFormSignupBtn" class="authButton">Sign Up</button>
+      <button id="signupCancelBtn" class="authButton">Cancel</button>
+    </form>
+    <p id="signupErrorMsg" class="popupErrMsg"></p>
+  </div>
+  
+  <!-- project creator popup -->
+  <div id="projCreatorWindow" class="popup">
+    <div class="closeBtnDiv">
+      <button class="popupCloseBtn">X</button>
+    </div>
+    <h3>New Project</h3>
+    <form id="projCreatorForm" class="popupForm">
+      <div>Name</div>
+      <input type="text" id="projCreatorNameInput" name="pname"/>
+      <div>Due Date</div>
+      <input type="date" id="projCreatorDateInput"/>
+      <div>
+        <button type="submit" form="projCreatorForm">Add</button>
+        <button id="projCreatorCloseBtn">Cancel</button>
+      </div>
+      <p id="projCreatorErrorMsg" class="popupErrMsg"></p>
+    </form>
+  </div>
+
+  <!-- project editor popup -->
+  <div id="projEditorWindow" class="popup">
+    <div class="closeBtnDiv">
+      <button class="popupCloseBtn">X</button>
+    </div>
+    <h3 id="projEditorTitle">Edit Project</h3>
+    <form id="projEditorForm" class="popupForm">
+      <div>Name</div>
+      <input type="text" id="projNameEditInput" name="pname"/>
+      <div>Due Date</div>
+      <input type="date" id="projDateEditInput"/>
+      <div>
+        <button type="submit" form="projEditorForm">Save</button>
+        <button id="projEditorCloseBtn">Cancel</button>
+      </div>
+      <button id="projEditorDeleteBtn">Delete Project</button>
+
+      <p id="projEditorErrorMsg" class="popupErrMsg"></p>
+    </form>
+  </div>
+
+  <!-- task adder popup -->
+  <div id="taskCreatorWindow" class="popup">
+    <div class="closeBtnDiv">
+      <button class="popupCloseBtn">X</button>
+    </div>
+    <h3>New Task</h3>
+    <form id="taskCreatorForm" class="popupForm">
+      <div>Task</div>
+      <input type="text" id="taskTextArea" name="pname"/>
+      <div>
+        <button type="submit" form="taskCreatorForm">Add</button>
+        <button id="taskCreatorCloseBtn">Cancel</button>
+      </div>
+      <p id="taskCreatorErrorMsg" class="popupErrMsg"></p>
+    </form>
+  </div>
+
+  <!-- task editor popup -->
+  <div id="taskEditorWindow" class="popup">
+    <div class="closeBtnDiv">
+      <button class="popupCloseBtn">X</button>
+    </div>
+    <h3 id= "taskEditorTitle">Edit Task</h3>
+    <form id="taskEditorForm" class="popupForm">
+      <input type="text" id="taskEditInput" name="pname"/>
+      <div>
+        <button type="submit" form="taskEditorForm">Save</button>
+        <button id="taskEditorCloseBtn">Cancel</button>
+      </div>
+      <button id="taskEditorDeleteBtn">Delete Task</button>
+      <p id="taskEditorErrorMsg" class="popupErrMsg"></p>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyC33GGGGCAIYqPM4OYYzEMJ7A1c9cuUbU8",
+      authDomain: "odin-javascript-4-todo-list.firebaseapp.com",
+      projectId: "odin-javascript-4-todo-list",
+      storageBucket: "odin-javascript-4-todo-list.appspot.com",
+      messagingSenderId: "98967600169",
+      appId: "1:98967600169:web:d6d4c339aafbd71fb0f038"
+    }
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="bundle.js"></script>  
+</body>
+</html>
+
