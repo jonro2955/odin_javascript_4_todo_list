@@ -6,15 +6,14 @@ const db = firebase.firestore().collection("collection");
 
 /**User Data Structure:
  * 
- * Each user gets 1 Collection class which has an array  
- * that stores Project class objects. 
- * Each project has a name, a due date, and an array of Task
- * class objects. Each Task holds
- * a plain string of text describing a task.
+ * Each user gets 1 Collection class which has an array.  
+ * It stores objects of the Project class. 
+ * Each project has a name, a due date, and an array of Tasks
+ * Each Task holds one string property.
  *  
- * The Collection class object will be stored as a 
- * stringified object string inside a single firestore document 
- * per user. The string will be parsed into 
+ * The Collection class object is stored in firestore as a 
+ * JSON string (using stringify()). Each user has one document,
+ * and in it, oneCollection. The string will be parsed into 
  * an object to access its contents.
  */
 
@@ -22,38 +21,20 @@ export default class DB {
 
   // check for a collection and if not found, create one for new user
   static initCollection(usr){
-    const email = usr.email;
-    const displayName = usr.displayName;
-    const emailVerified = usr.emailVerified;
-    const photoURL = usr.photoURL;
-    const isAnonymous = usr.isAnonymous;
+    /**Note for db.doc(..ID..).get() method:
+     * When using this with multiple authentication providers, 
+     * the ..ID.. input must be the user object's uid property 
+     * because that is the only one that will be present and unique for 
+     * all providers. You cannot use something like the email property 
+     * because not all providers provide it. For example, Facebook
+     * users can make their email address as private in their settings.
+     */
     const uid = usr.uid;
-    const providerData = usr.providerData;
-    console.log(
-      `Firebase Authentication Credentials: 
-      email: ${email},
-      displayName: ${displayName}, 
-      emailVerified: ${emailVerified}, 
-      photoURL: ${photoURL}, 
-      isAnonymous: ${isAnonymous}, 
-      uid: ${uid}`
-    );
-    console.log(
-      `Provider Data:
-      displayName: ${providerData[0].displayName}, 
-      email: ${providerData[0].email},
-      phoneNumber: ${providerData[0].phoneNumber}, 
-      photoURL: ${providerData[0].photoURL}, 
-      providerId: ${providerData[0].providerId}, 
-      uid: ${providerData[0].uid}`
-    ); 
-
-    const userEmail = providerData[0].email;
-    console.log(`Initializing firestore collection for ${userEmail}`);
-    db.doc(userEmail).get().then((doc)=>{
+    db.doc(uid).get().then((doc)=>{
       if (!doc.exists) {
-        const string = JSON.stringify(new Collection());
-        db.doc(userEmail).set({ myData: string });
+        const string = JSON.stringify(new Collection()); 
+        db.doc(uid).set({ myData: string });
+        console.log(`Initialized new firestore collection for ${uid}`);
       } 
     }).catch((err)=>{
         console.log("Error getting cloud data, likely due to new user:", err);
@@ -62,12 +43,12 @@ export default class DB {
 
   // get user data as a JSON string
   static getMyData(){
-    const userEmail = firebase.auth().currentUser.email;
+    const uid = firebase.auth().currentUser.uid;
     /*To return the asynchronous return value of the .get() method,
     you must return the whole db.get() method call and attach 
     a then() to it. Its results must also be returned inside the 
     then() scope*/
-    return db.doc(userEmail).get().then(doc=>{  
+    return db.doc(uid).get().then(doc=>{  
       return doc.data().myData;
     }).catch(err=>{
       console.log("Error getting cloud data, likely due to new user:", err);
@@ -77,8 +58,8 @@ export default class DB {
   // save user data as a JSON string
   static saveMyData(dataObject){
     const jsonString = JSON.stringify(dataObject);
-    const userEmail = firebase.auth().currentUser.email;
-    return db.doc(userEmail).set({ myData: jsonString });
+    const uid = firebase.auth().currentUser.uid;
+    return db.doc(uid).set({ myData: jsonString });
   }
   
   static addProject(pName, pDate){
@@ -100,8 +81,6 @@ export default class DB {
         myProjArray.push(newProj); // push
         myData.projects = myProjArray; // set 
         DB.saveMyData(myData); // save
-        
-
     })
     } 
   }

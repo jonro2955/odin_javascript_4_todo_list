@@ -73,7 +73,7 @@ input{
   border-radius: 20px;
   background-color:darkturquoise;
   width: 150px;
-  height: 200px;
+  height:fit-content;
   padding: 10px;
 }
 #accountDetailsImage{
@@ -152,6 +152,10 @@ input{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.accountDetailsText{
+  margin:5px;
+  font-weight: bold;
 }
 .checkBox{
   width:25px;

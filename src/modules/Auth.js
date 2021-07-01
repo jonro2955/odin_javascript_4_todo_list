@@ -2,7 +2,8 @@ import UI from "./UI";
 
 const topHeader = document.getElementById("topHeader");
 const headerAuthBtn = document.getElementById("headerAuthBtn");
-const accountDetailsText = document.getElementById("accountDetailsText");
+const accountProvider = document.getElementById("accountProvider");
+const accountDisplayName = document.getElementById("accountDisplayName");
 const accountDetailsImage = document.getElementById("accountDetailsImage");
 const appBody = document.getElementById("appBody");
 const loginModal = document.getElementById("loginModal");
@@ -73,15 +74,16 @@ export default class Auth {
 
   static signInWithGoogle(){
     firebase.auth().signInWithPopup(googleAuthProvider).then(cred=>{
-      console.log(`Logged in as ${cred.user.email}`);
+      console.log(`Logged in using Google with firebase uid ${cred.user.uid}`);
     }).catch(err=>{
       loginErrorMsg.innerHTML = err;    
     })
   }
 
+  //fb prob
   static signInWithFacebook(){
     firebase.auth().signInWithPopup(facebookAuthProvider).then(cred=>{
-      console.log(`Logged in as ${cred.user.email}`);
+      console.log(`Logged in using Facebook with firebase uid ${cred.user.uid}`);
     }).catch(err=>{
       loginErrorMsg.innerHTML = err;
     })
@@ -89,7 +91,7 @@ export default class Auth {
 
   static signInWithGithub(){
     firebase.auth().signInWithPopup(githubAuthProvider).then(cred=>{
-      console.log(`Logged in as ${cred.user.email}`);
+      console.log(`Logged in using Github with firebase uid ${cred.user.uid}`);
     }).catch(err=>{
       loginErrorMsg.innerHTML = err;
     })
@@ -99,7 +101,7 @@ export default class Auth {
     const email = loginForm["loginEmailInput"].value;
     const password = loginForm["loginPasswordInput"].value;
     firebase.auth().signInWithEmailAndPassword(email, password).then((cred) => {
-      console.log(`Logged in using email and password ${cred.user.email}`);
+      console.log(`Logged in using email and password ${cred.user.uid}`);
       loginErrorMsg.innerHTML = "";
     }).catch(err => {
       loginErrorMsg.innerHTML = err;
@@ -110,7 +112,7 @@ export default class Auth {
     const email = signupForm["signupEmailInput"].value;
     const password = signupForm["signupPasswordInput"].value;
     firebase.auth().createUserWithEmailAndPassword(email, password).then(cred => {
-      console.log(`Signed up as ${cred.user.email}`);
+      console.log(`Signed up with email: ${cred.user.email} and uid: ${cred.user.uid}`);
       loginErrorMsg.innerHTML = "";
     }).catch(err => {
       signupErrorMsg.innerHTML = err.message;
@@ -136,14 +138,35 @@ export default class Auth {
   }
 
   static loadAuthData(user){
-    const email = user.email;
-    const displayName = user.displayName;
-    const photoURL = user.photoURL;
-    headerAuthBtn.textContent = email;
-    if(displayName){
-      accountDetailsText.textContent = displayName;
+    const providerData = user.providerData;
+    console.log(
+      `Provider Data:
+      displayName: ${providerData[0].displayName}, 
+      email: ${providerData[0].email},
+      phoneNumber: ${providerData[0].phoneNumber}, 
+      photoURL: ${providerData[0].photoURL}, 
+      providerId: ${providerData[0].providerId}, 
+      provider uid: ${providerData[0].uid},
+      firebase auth uid: ${user.uid}`
+    ); 
+    const email = providerData[0].email;
+    const providerId = providerData[0].providerId;
+    const displayName = providerData[0].displayName;
+    const photoURL = providerData[0].photoURL;
+    if(providerId != "password"){
+      accountProvider.textContent = providerId;
     }else{
-      accountDetailsText.textContent = email;
+      accountProvider.textContent = "";
+    }
+    if(email){
+      headerAuthBtn.textContent = email;
+    }else{
+      headerAuthBtn.textContent = displayName;
+    }
+    if(displayName){
+      accountDisplayName.textContent = displayName;
+    }else{
+      accountDisplayName.textContent = email;
     }
     accountDetailsImage.setAttribute("src", photoURL);
   }
