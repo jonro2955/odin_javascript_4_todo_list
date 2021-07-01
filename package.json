@@ -1,0 +1,31 @@
+{
+  "name": "odin_javascript_4_todo_list",
+  "version": "1.0.0",
+  "description": "Preview: https://jonro2955.github.io/odin_javascript_4_todo_list/",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonro2955/odin_javascript_4_todo_list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonro2955/odin_javascript_4_todo_list/issues"
+  },
+  "homepage": "https://github.com/jonro2955/odin_javascript_4_todo_list#readme",
+  "devDependencies": {
+    "css-loader": "^5.2.6",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.41.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.22.1"
+  }
+}
