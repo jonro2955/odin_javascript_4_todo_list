@@ -50,14 +50,15 @@
 
     <!-- right panel -->
     <div id="rightPanel">
-      <!-- ACCOUNT MODAL -->
+      <!-- ACCOUNT DETAILS MODAL -->
       <div id="accountModal" class="popup">
         <div class="closeBtnDiv">
           <button class="popupCloseBtn">X</button>
         </div>
         <div id="accountModalContent">
           <img id="accountDetailsImage" alt="user profile pic">
-          <h4 id="accountDetailsText"></h4>
+          <div id="accountProvider" class="accountDetailsText"></div>
+          <div id="accountDisplayName" class="accountDetailsText"></div>
           <button id="logoutBtn" class="authButton">Log Out</button>
         </div>
       </div>
@@ -73,6 +74,8 @@
     <div>Log in with</div></br>
     <div>
       <button id="googleAuthBtn" class="authButton">Google</button>
+      <!-- Facebook and github bugs unresolvable. Used to work. -->
+      <button id="facebookAuthBtn" class="authButton">Facebook</button>
       <button id="githubAuthBtn" class="authButton">Github</button>
     </div>
       <p>Or</p>
