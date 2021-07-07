@@ -1,3 +1,4 @@
+import * as firebase from "firebase";
 import UI from "./UI";
 
 const topHeader = document.getElementById("topHeader");
@@ -21,24 +22,22 @@ const signupErrorMsg = document.getElementById("signupErrorMsg");
 const googleAuthBtn = document.getElementById("googleAuthBtn");
 const facebookAuthBtn = document.getElementById("facebookAuthBtn");
 const githubAuthBtn = document.getElementById("githubAuthBtn");
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider(); 
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 
-
 export default class Auth {
-
   // adds event listeners to authentication forms and buttons
-  static initAuth(){
+  static initAuth() {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
       Auth.signInWithEmailAndPassword();
-    })
+    });
     signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       Auth.createUserWithEmailAndPassword();
-    })
-    loginFormSignupBtn.addEventListener("click", (e)=>{
+    });
+    loginFormSignupBtn.addEventListener("click", (e) => {
       e.preventDefault();
       signupModal.style.display = "flex";
       signupEmailInput.focus();
@@ -48,96 +47,124 @@ export default class Auth {
       signupForm.reset();
       signupModal.style.display = "none";
       loginEmailInput.focus();
-    })
+    });
     headerAuthBtn.addEventListener("click", () => {
       UI.removePopups();
       accountModal.style.display = "block";
-    })
+    });
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       Auth.signOut();
       accountModal.style.display = "none";
-    }) 
-    googleAuthBtn.addEventListener("click", (e)=>{
+    });
+    googleAuthBtn.addEventListener("click", (e) => {
       e.preventDefault();
       Auth.signInWithGoogle();
-    })
-    facebookAuthBtn.addEventListener("click", (e)=>{
+    });
+    facebookAuthBtn.addEventListener("click", (e) => {
       e.preventDefault();
       Auth.signInWithFacebook();
-    })
-    githubAuthBtn.addEventListener("click", (e)=>{
+    });
+    githubAuthBtn.addEventListener("click", (e) => {
       e.preventDefault();
       Auth.signInWithGithub();
-    })
+    });
   }
 
-  static signInWithGoogle(){
-    firebase.auth().signInWithPopup(googleAuthProvider).then(cred=>{
-      console.log(`Logged in using Google with firebase uid ${cred.user.uid}`);
-    }).catch(err=>{
-      loginErrorMsg.innerHTML = err;    
-    })
+  static signInWithGoogle() {
+    firebase
+      .auth()
+      .signInWithPopup(googleAuthProvider)
+      .then((cred) => {
+        console.log(
+          `Logged in using Google with firebase uid ${cred.user.uid}`
+        );
+      })
+      .catch((err) => {
+        loginErrorMsg.innerHTML = err;
+      });
   }
 
   //fb prob
-  static signInWithFacebook(){
-    firebase.auth().signInWithPopup(facebookAuthProvider).then(cred=>{
-      console.log(`Logged in using Facebook with firebase uid ${cred.user.uid}`);
-    }).catch(err=>{
-      loginErrorMsg.innerHTML = err;
-    })
+  static signInWithFacebook() {
+    firebase
+      .auth()
+      .signInWithPopup(facebookAuthProvider)
+      .then((cred) => {
+        console.log(
+          `Logged in using Facebook with firebase uid ${cred.user.uid}`
+        );
+      })
+      .catch((err) => {
+        loginErrorMsg.innerHTML = err;
+      });
   }
 
-  static signInWithGithub(){
-    firebase.auth().signInWithPopup(githubAuthProvider).then(cred=>{
-      console.log(`Logged in using Github with firebase uid ${cred.user.uid}`);
-    }).catch(err=>{
-      loginErrorMsg.innerHTML = err;
-    })
+  static signInWithGithub() {
+    firebase
+      .auth()
+      .signInWithPopup(githubAuthProvider)
+      .then((cred) => {
+        console.log(
+          `Logged in using Github with firebase uid ${cred.user.uid}`
+        );
+      })
+      .catch((err) => {
+        loginErrorMsg.innerHTML = err;
+      });
   }
 
-  static signInWithEmailAndPassword(){
+  static signInWithEmailAndPassword() {
     const email = loginForm["loginEmailInput"].value;
     const password = loginForm["loginPasswordInput"].value;
-    firebase.auth().signInWithEmailAndPassword(email, password).then((cred) => {
-      console.log(`Logged in using email and password ${cred.user.uid}`);
-      loginErrorMsg.innerHTML = "";
-    }).catch(err => {
-      loginErrorMsg.innerHTML = err;
-    })
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((cred) => {
+        console.log(`Logged in using email and password ${cred.user.uid}`);
+        loginErrorMsg.innerHTML = "";
+      })
+      .catch((err) => {
+        loginErrorMsg.innerHTML = err;
+      });
   }
 
-  static createUserWithEmailAndPassword(){
+  static createUserWithEmailAndPassword() {
     const email = signupForm["signupEmailInput"].value;
     const password = signupForm["signupPasswordInput"].value;
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(cred => {
-      console.log(`Signed up with email: ${cred.user.email} and uid: ${cred.user.uid}`);
-      loginErrorMsg.innerHTML = "";
-    }).catch(err => {
-      signupErrorMsg.innerHTML = err.message;
-    })
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((cred) => {
+        console.log(
+          `Signed up with email: ${cred.user.email} and uid: ${cred.user.uid}`
+        );
+        loginErrorMsg.innerHTML = "";
+      })
+      .catch((err) => {
+        signupErrorMsg.innerHTML = err.message;
+      });
   }
 
-  static signOut(){
+  static signOut() {
     firebase.auth().signOut();
   }
 
-  static showLoginWindow(){
+  static showLoginWindow() {
     topHeader.style.display = "none";
     appBody.style.display = "none";
     loginModal.style.display = "flex";
     loginEmailInput.focus();
   }
 
-  static hideLoginWindow(){
+  static hideLoginWindow() {
     topHeader.style.display = "";
     appBody.style.display = "";
     loginModal.style.display = "none";
     signupModal.style.display = "none";
   }
 
-  static loadAuthData(user){
+  static loadAuthData(user) {
     const providerData = user.providerData;
     console.log(
       `Provider Data:
@@ -148,30 +175,26 @@ export default class Auth {
       providerId: ${providerData[0].providerId}, 
       provider uid: ${providerData[0].uid},
       firebase auth uid: ${user.uid}`
-    ); 
+    );
     const email = providerData[0].email;
     const providerId = providerData[0].providerId;
     const displayName = providerData[0].displayName;
     const photoURL = providerData[0].photoURL;
-    if(providerId != "password"){
+    if (providerId != "password") {
       accountProvider.textContent = providerId;
-    }else{
+    } else {
       accountProvider.textContent = "";
     }
-    if(email){
+    if (email) {
       headerAuthBtn.textContent = email;
-    }else{
+    } else {
       headerAuthBtn.textContent = displayName;
     }
-    if(displayName){
+    if (displayName) {
       accountDisplayName.textContent = displayName;
-    }else{
+    } else {
       accountDisplayName.textContent = email;
     }
     accountDetailsImage.setAttribute("src", photoURL);
   }
-
 }
-
-
-

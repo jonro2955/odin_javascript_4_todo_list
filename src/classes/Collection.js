@@ -1,7 +1,6 @@
 import Project from "./Project.js";
 
 export default class Collection {
-  
   constructor() {
     this.projects = [];
     this.projects.push(new Project("Daily", ""));
@@ -10,12 +9,11 @@ export default class Collection {
     this.projects.push(new Project("Yearly", ""));
   }
 
-  setProjects(projects){
+  setProjects(projects) {
     this.projects = projects;
   }
 
-  addProject(project){
+  addProject(project) {
     this.projects.push(project);
   }
-
 }

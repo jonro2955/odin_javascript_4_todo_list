@@ -26,11 +26,11 @@ For inspiration, check out the following great todo apps. (look at screenshots, 
 
 Todoist: https://en.todoist.com/
 Things: https://culturedcode.com/things/
-any.do: https://www.any.do/ 
+any.do: https://www.any.do/
 
 Use localStorage to save user’s projects and todos between sessions.
 
 Since you are probably already using webpack, adding external libraries from npm is a cinch! You might want to consider using the following useful library in your code:
 date-fns(https://github.com/date-fns/date-fns) gives you a bunch of handy functions for formatting and manipulating dates and times.
 
-Examples: https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/todo-list#want-more-practice 
+Examples: https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/todo-list#want-more-practice

@@ -1,47 +1,47 @@
-html{
+html {
   height: 100%;
   /* width: 100%; */
-  background-image: url('./images/background.png');
+  background-image: url("./images/background.png");
   background-size: cover;
 }
-body{
-  margin:0;
+body {
+  margin: 0;
   height: 100%;
   width: 100%;
 }
-input{
+input {
   width: 250px;
   height: 25px;
 }
-#topHeader{
+#topHeader {
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  grid-template-areas: 'left center right';
-  background-color:dodgerblue;
-  border-bottom:darkturquoise 3px solid;
+  grid-template-areas: "left center right";
+  background-color: dodgerblue;
+  border-bottom: darkturquoise 3px solid;
   opacity: 80%;
 }
-#headerLogoDiv{
+#headerLogoDiv {
   grid-area: left;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-#headerAuthBtnDiv{
+#headerAuthBtnDiv {
   grid-area: right;
   display: flex;
   justify-content: center;
 }
-#logoImage{
+#logoImage {
   width: 50px;
-  height: 50px; 
+  height: 50px;
 }
-#logoText{
+#logoText {
   font-size: 50px;
   color: black;
 }
-#headerAuthBtn{
+#headerAuthBtn {
   width: fit-content;
   cursor: pointer;
   background-color: lightblue;
@@ -49,156 +49,162 @@ input{
   min-width: 100px;
   font-size: 20px;
 }
-#loginModal, #signupModal{
+#loginModal,
+#signupModal {
   display: none;
   z-index: 1;
   flex-direction: column;
   align-items: center;
-  position:absolute;
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
   /* box-shadow: -10px 10px 8px 8px #888888; */
-  background-color:darkturquoise;
+  background-color: darkturquoise;
   opacity: 85%;
   width: 450px;
   height: 550px;
 }
-#accountModal{
+#accountModal {
   display: none;
   z-index: 1;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color:darkturquoise;
+  background-color: darkturquoise;
   width: 150px;
-  height:fit-content;
+  height: fit-content;
   padding: 10px;
 }
-#accountDetailsImage{
+#accountDetailsImage {
   width: 50px;
-  height:50px;
+  height: 50px;
 }
-#appBody{
+#appBody {
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  grid-template-areas: 'nav main blankArea';
+  grid-template-areas: "nav main blankArea";
   width: 100%;
   height: 100%;
 }
-#navPanel{
+#navPanel {
   grid-area: nav;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color:lightblue;
+  background-color: lightblue;
   opacity: 90%;
 }
-#routineProjBtnsContainer{
+#routineProjBtnsContainer {
   display: flex;
   flex-direction: column;
-  gap:5px;
+  gap: 5px;
 }
-#mainPanel{
+#mainPanel {
   z-index: 0;
   grid-area: main;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color:lightblue;
+  background-color: lightblue;
   opacity: 90%;
 }
-#rightPanel{
+#rightPanel {
   grid-area: blankArea;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color:lightblue;
+  background-color: lightblue;
   opacity: 90%;
 }
-#projCreatorWindow, #projEditorWindow, #taskCreatorWindow, #taskEditorWindow{
+#projCreatorWindow,
+#projEditorWindow,
+#taskCreatorWindow,
+#taskEditorWindow {
   z-index: 1;
   display: none;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color:dodgerblue;
+  background-color: dodgerblue;
   padding: 10px;
   border: black solid 2px;
   border-radius: 20px;
   padding: 25px;
 }
-#addProjBtn, #addTaskBtn{
+#addProjBtn,
+#addTaskBtn {
   margin-top: 15px;
   height: 35px;
-  border-radius:5px;
+  border-radius: 5px;
 }
-#headerWelcomeMsg{
+#headerWelcomeMsg {
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 50px;
 }
-#loginForm, #signupForm{
+#loginForm,
+#signupForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 400px;
   gap: 10px;
 }
-#accountModalContent{
+#accountModalContent {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.accountDetailsText{
-  margin:5px;
+.accountDetailsText {
+  margin: 5px;
   font-weight: bold;
 }
-.checkBox{
-  width:25px;
-  height:25px;
+.checkBox {
+  width: 25px;
+  height: 25px;
   cursor: pointer;
 }
-.authButton{
+.authButton {
   width: 100px;
   height: 30px;
 }
-.taskEntry{
-  display:flex;
-  flex-direction:row;
+.taskEntry {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  padding:2px;
+  padding: 2px;
   margin-bottom: 5px;
-  width:500px;
+  width: 500px;
   border: black solid 1px;
   border-radius: 5px;
-  gap:5px;
+  gap: 5px;
 }
-.taskText{
+.taskText {
   display: flex;
   flex-direction: row;
   align-items: center;
-  word-break: break-all;  
+  word-break: break-all;
 }
-.projNavBtnEntry{
+.projNavBtnEntry {
   display: flex;
   flex-direction: row;
   border: black solid 1px;
   border-radius: 5px;
   gap: 5px;
 }
-.projNavBtnEntry:active{
+.projNavBtnEntry:active {
   border-color: red;
 }
-.projNavBtn{
-  cursor: pointer; 
+.projNavBtn {
+  cursor: pointer;
   border-radius: 5px;
-  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
-  background:#DDD;
-  min-width: 150px;
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+  background: #ddd;
+  min-width: 50%;
   height: 40px;
   text-align: center;
   display: flex;
@@ -206,47 +212,46 @@ input{
   flex-direction: column;
   margin: 0px;
   border-right: black solid 1px;
-
 }
 .projNavBtn:active {
-  color:red;
+  color: red;
   border-color: red;
-  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
 }
-.routineProjBtn{
+.routineProjBtn {
   font-weight: bolder;
   border: black solid 1px;
 }
-.pNameLabel{
+.pNameLabel {
   font-weight: bolder;
 }
-.popupErrMsg{
+.popupErrMsg {
   color: red;
 }
-.popupForm{
+.popupForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 400px;
   gap: 10px;
 }
-.projEditBtn{
+.projEditBtn {
   cursor: pointer;
   height: 40px;
   width: 25px;
 }
-.taskEditBtn{
-  height:25px;  
+.taskEditBtn {
+  height: 25px;
   cursor: pointer;
 }
-.closeBtnDiv{
-  display:flex;
+.closeBtnDiv {
+  display: flex;
   justify-content: flex-end;
 }
-.popupCloseBtn{
-  width:35px;
-  height:35px;
+.popupCloseBtn {
+  width: 35px;
+  height: 35px;
 }
-.popup{
+.popup {
   text-align: center;
 }
