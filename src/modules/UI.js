@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { format } from 'date-fns';
 import DB from './DB.js';
 // element lists
