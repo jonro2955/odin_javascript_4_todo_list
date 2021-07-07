@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 import Collection from '../classes/Collection.js';
 import Project from '../classes/Project.js';
 import Task from '../classes/Task.js';

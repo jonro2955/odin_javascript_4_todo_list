@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import UI from './UI';
 
 const topHeader = document.getElementById('topHeader');
