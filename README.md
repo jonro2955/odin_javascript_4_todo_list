@@ -1,4 +1,4 @@
-#To-Do List
+# To-Do List
 
 Preview: https://jonro2955.github.io/odin_javascript_4_todo_list/
 
