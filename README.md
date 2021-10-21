@@ -10,4 +10,4 @@ It uses Google's Firebase APIs to achieve user authentication and data storage.
 
 Webpack is used to import external NPM libraries such as date-fns and other internally created modules.
 
-Eslint is used to format the code and check for errors.
+Eslint is used to format the code and check for errors. 
