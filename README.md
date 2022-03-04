@@ -8,7 +8,7 @@ Github accounts.
 
 <hr/>
 
-[Live Demo](https://jonro2955.github.io/odin_javascript_7_battleship_2.0/)
+[Live Demo](https://jonro2955.github.io/odin_javascript_4_todo_list/)
 
 ### Focus  
 - Google Firebase API 
