@@ -3,7 +3,7 @@ This is a web app that lets users create to-do lists and store them in the cloud
 
 ## [Live Site](https://jonro2955.github.io/odin_javascript_4_todo_list/)
 
-### Focus  
+### Learning Objectives  
 - Google Firebase API 
 - ES6 modules, ES6 classes
 - JavaScript object oriented programming (mimicing) using JS classes
